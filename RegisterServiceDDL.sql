@@ -2,28 +2,25 @@ CREATE EXTENSION "uuid-ossp";
 
 /*this is createing the table -Ross */
 CREATE TABLE employee (
-  id uuid NOT NULL,
+  record_id uuid NOT NULL,
   first_name char(10),
   last_name char(15),
-  lookupcode character varying(32) NOT NULL DEFAULT(''),
-  count int NOT NULL DEFAULT(0),
-  createdon timestamp without time zone NOT NULL DEFAULT now(),
-  CONSTRAINT product_pkey PRIMARY KEY (id)
-) WITH (
-  OIDS=FALSE
-);
+  employee_id int,
+  active Char(2), CHECK ((active='Y') OR (active='N')),
 
-/*IDK what this is -Ross*/
-CREATE INDEX ix_product_lookupcode
-  ON product
-  USING btree
-  (lower(lookupcode::text) COLLATE pg_catalog."default");
+
+  password char(25),
+  createdon timestamp without time zone NOT NULL DEFAULT now(),
+);
 
 /*Inserting a test record -Ross*/
 INSERT INTO employee VALUES (
        uuid_generate_v4()
-     , 'lookupcode1'
-     , 100
+     , 'Test'
+     , 'ing'
+     , 10
+     , 'Y'
+     , 'fall2017'
      , current_timestamp
 );
 
