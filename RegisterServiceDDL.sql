@@ -2,7 +2,7 @@ CREATE EXTENSION "uuid-ossp";
 
 /*this is createing the table -Ross */
 CREATE TABLE employee (
-  record_id uuid NOT NULL,
+  record_id uuid NOT NULL primary key,
   first_name char(10),
   last_name char(15),
   employee_id int,
